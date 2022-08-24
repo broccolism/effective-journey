@@ -120,7 +120,9 @@ foo, *bar = 1, 2, 3 # foo = 1; bar = [2, 3]
 
 #### If statement
 
-`if`, `elsif`, `else`, `end` 키워드를 사용한다.
+`if`, `unless`,  `elsif`, `else`, `end` 키워드를 사용한다.
+
+- `unless (condition)`은 `if !(condition)`과 같은 의미를 가진다.
 
 ```ruby
 if age >= 12 then
@@ -212,3 +214,122 @@ def fact(n)
   end
 ```
 
+## 클래스
+
+https://dev-yakuza.posstree.com/ko/ruby/class/
+
+#### 선언
+
+```ruby
+class Book
+  ...
+end
+```
+
+필드 변수를 미리 나열하지는 않는다.
+
+#### 생성자
+
+```ruby
+book = Book.new
+```
+
+- `{클래스명}.new` 로 새 인스턴스를 생성한다.
+
+#### 오브젝트 초기화
+
+```ruby
+class Book
+  def initialize (author)
+    @author = author
+  end
+end
+
+book = Book.new('dev-yakuza')
+book.printAuthor
+# dev-yakuza
+```
+
+- `initialize` 메서드는 `new` 메서드로 새 오브젝트를 생성할 때 자동으로 호출된다.	
+
+#### 상속
+
+#### 상속
+
+```ruby
+	class Foo < Super
+	  def test
+	     :
+	  end
+	     :
+	end
+```
+
+#### 인스턴스 변수
+
+```ruby
+class Book
+  def printTitle
+    puts @title
+  end
+  ...
+end
+```
+
+- `@`로 시작.
+
+##### 인스턴스 변수 접근자
+
+```ruby
+class Book
+  def initialize
+    @title = 'Ruby'
+  end
+
+  attr_accessor :title
+end
+
+book = Book.new
+puts book.title # Ruby
+book.title = 'Rails'
+puts book.title # Rails
+```
+
+- `attr_accessor`, `attr_writer`, `atter_reader`로 사용할 접근자를 정의할 수 있다.
+
+#### 클래스 변수(? 이게 명칭이 맞나)
+
+```
+class Book
+  @@publisher = 'dev-yakuza'
+
+  def printPublisher
+    puts @@publisher
+  end
+end
+
+book = Book.new
+book.publisher
+# dev-yakuza
+```
+
+- `@@`로 시작.
+- 같은 클래스로부터 생성된 모든 오브젝트에서 공유하는 변수.
+- 값을 여러번 할당할 수 있음.
+
+#### 클래스 메서드
+
+```ruby
+class Greeting
+  @@name = 'World'
+
+  def Greeting.hello
+    puts 'Hello ' + @@name
+  end
+end
+
+Greeting.hello
+# Hello World
+```
+
+- 같은 클래스로부터 생성된 모든 오브젝트에서 공유하는 메서드.
